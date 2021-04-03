@@ -1,11 +1,14 @@
 import React from "react";
 
+<link rel="stylesheet" href="index.css"></link>;
+
 function TableHeader() {
   return (
-    <thead>
+    <thead className="header">
       <tr>
         <th>Name</th>
         <th>Job</th>
+        <th>Remove</th>
       </tr>
     </thead>
   );
@@ -14,9 +17,12 @@ function TableHeader() {
 function TableBody(props) {
   const rows = props.characterData.map((row, index) => {
     return (
-      <tr key={index}>
-        <td>{row.name}</td>
+      <tr key={index} className="data">
+        <td className="stuff">{row.name}</td>
         <td>{row.job}</td>
+        <td>
+          <button onClick={() => props.removeCharacter(index)}>Delete</button>
+        </td>
       </tr>
     );
   });
@@ -25,9 +31,12 @@ function TableBody(props) {
 
 function Table(props) {
   return (
-    <table>
+    <table className="styleTable">
       <TableHeader />
-      <TableBody characterData={props.characterData} />
+      <TableBody
+        characterData={props.characterData}
+        removeCharacter={props.removeCharacter}
+      />
     </table>
   );
 }
