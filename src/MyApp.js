@@ -53,7 +53,7 @@ function MyApp() {
 
   function updateList(person) {
     makePostCall(person).then((result) => {
-      if (result) setCharacters([...characters, person]);
+      if (result) setCharacters([...characters, result]);
     });
   }
 
@@ -71,7 +71,7 @@ function MyApp() {
         <a
           href="https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l"
           target="_blank"
-          rel="noref"
+          rel="noreferrer"
         >
           Dom at Dev.to
         </a>{" "}
