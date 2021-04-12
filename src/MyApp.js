@@ -23,21 +23,28 @@ function MyApp() {
     }
   }
 
-  function removeOneCharacter(index) {
+  function removeOneCharacter(index, person) {
     const updated = characters.filter((character, i) => {
       return i !== index;
     });
     setCharacters(updated);
+    deletePerson(person);
   }
 
-  function updateList(person) {
-    setCharacters([...characters, person]);
+  async function deletePerson(person) {
+    try {
+      await axios.delete("http://localhost:5000/users/" + person.id);
+    } catch (error){
+      console.log(error);
+      return false;
+    }
   }
 
   async function makePostCall(person) {
     try {
       const response = await axios.post("http://localhost:5000/users", person);
-      return response;
+      return response.data;
+
     } catch (error) {
       console.log(error);
       return false;
@@ -64,6 +71,7 @@ function MyApp() {
         <a
           href="https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l"
           target="_blank"
+          rel="noref"
         >
           Dom at Dev.to
         </a>{" "}
